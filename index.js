@@ -5,9 +5,14 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const app = express();
 
+const port = process.env.PORT || 8800; // Use Railway's assigned port
+app.listen(port, () => {
+  console.log(`Backend is running on port ${port}.`);
+});
+
 app.use(
   cors({
-    origin: "*",
+    origin: "https://adapt-wald-holz-chatbot.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })

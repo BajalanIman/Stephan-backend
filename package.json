@@ -6,14 +6,17 @@
     "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "mysql": "^2.18.1",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "pg": "^8.13.3"
   },
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "migrate:deploy": "prisma migrate deploy",
+    "start": "npm run migrate:deploy && node index.js"
   },
   "keywords": [],
   "author": "",
