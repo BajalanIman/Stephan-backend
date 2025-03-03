@@ -5,14 +5,14 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const app = express();
 
+// CORS Configuration
 const allowedOrigins = process.env.CORS_ORIGIN
   ? process.env.CORS_ORIGIN.split(",") // Support multiple origins
-  : ["https://adapt-wald-holz-chatbot.netlify.app"]; // Only allow this specific origin
+  : ["https://adapt-wald-holz-chatbot.netlify.app"]; // Add the correct frontend URL here.
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g., mobile apps or curl requests)
       if (
         !origin ||
         allowedOrigins.includes("*") ||
@@ -28,6 +28,8 @@ app.use(
     credentials: true, // Allow credentials if needed
   })
 );
+
+app.options("*", cors()); // Handle preflight requests
 
 app.use(express.static("public"));
 app.use(express.json());
