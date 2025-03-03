@@ -7,9 +7,9 @@ const app = express();
 
 app.use(
   cors({
-    // origin: "https://adapt-wald-holz-chatbot.netlify.app",
-    // methods: ["GET", "POST"],
-    // credentials: true,
+    origin: "https://adapt-wald-holz-chatbot.netlify.app",
+    methods: ["GET", "POST"],
+    credentials: true,
   })
 );
 
