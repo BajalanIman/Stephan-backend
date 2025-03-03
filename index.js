@@ -7,12 +7,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://adapt-wald-holz-chatbot.netlify.app",
+    origin: process.env.CORS_ORIGIN || "*", // Use env variable or allow all
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    allowedHeaders: ["Content-Type"],
   })
 );
-app.options("*", cors());
+
 app.use(express.static("public"));
 app.use(express.json());
 
