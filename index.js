@@ -12,6 +12,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Origin", "Accept"],
   })
 );
+app.options("*", cors());
 app.use(express.static("public"));
 app.use(express.json());
 
