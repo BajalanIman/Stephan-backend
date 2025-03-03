@@ -9,7 +9,7 @@ app.use(
   cors({
     origin: "https://adapt-wald-holz-chatbot.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
+    // allowedHeaders: ["Content-Type"],
   })
 );
 app.use(express.static("public"));
