@@ -5,13 +5,32 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const app = express();
 
+// CORS Configuration
+const allowedOrigins = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(",") // Support multiple origins
+  : ["*"];
+
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || "*", // Use env variable or allow all
+    origin: (origin, callback) => {
+      if (
+        !origin ||
+        allowedOrigins.includes("*") ||
+        allowedOrigins.includes(origin)
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
+    credentials: true, // Allow credentials if needed
   })
 );
+
+// Handle preflight requests
+app.options("*", cors());
 
 app.use(express.static("public"));
 app.use(express.json());
