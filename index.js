@@ -2,8 +2,9 @@ import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
 const app = express();
+const PORT = 8900;
+const prisma = new PrismaClient();
 
 app.use(
   cors({
@@ -246,10 +247,13 @@ app.get("/messages", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 8800;
-app.listen(PORT, () => {
-  console.log(`Backend is running on port ${PORT}.`);
-});
+app
+  .listen(8800, () => {
+    console.log("Server running on port 8800");
+  })
+  .on("error", (err) => {
+    console.error("Error starting server:", err);
+  });
 
 // app.listen(8800, () => {
 //   console.log("Backend is running on port 8800.");
