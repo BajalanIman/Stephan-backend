@@ -15,7 +15,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
-    "migrate:deploy": "prisma migrate deploy",
+    "migrate:deploy": "npx prisma migrate deploy",
     "start": "npm run migrate:deploy && node index.js"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "nodemon": "^3.1.3",
     "prisma": "^6.4.1"
   }
 }
